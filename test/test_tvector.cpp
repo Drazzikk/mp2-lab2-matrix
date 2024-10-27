@@ -140,17 +140,10 @@ TEST(TDynamicVector, compare_vector_with_itself_return_true)
 
 TEST(TDynamicVector, vectors_with_different_size_are_not_equal)
 {
-	TDynamicVector<int> v1(5);
-	TDynamicVector<int> v2(10);
+	TDynamicVector<int> v1(10);
+	TDynamicVector<int> v2(5);
 
-	for (size_t i = 0; i < 5; i++)
-		v1[i] = i;
-
-	for (size_t i = 0; i < 10; i++)
-		v1[i] = i + 20;
-	
-
-	ASSERT_EQ(v1 == v2, false);
+	EXPECT_FALSE(v1 == v2);
 }
 
 TEST(TDynamicVector, can_add_scalar_to_vector)

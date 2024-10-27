@@ -68,18 +68,20 @@ public:
 
   TDynamicVector& operator=(const TDynamicVector& v)
   {
-      if (this == &v)
-          return *this;
-      if (sz != v.sz)
+      if (this != &v)
       {
-          T* p = new T[v.sz];
-          delete[] pMem;
-          sz = v.sz;
-          pMem = p;
+          if (sz != v.sz)
+          {
+              sz = v.sz;
+              delete[] pMem;
+              T* p = new T[sz];
+              if (p == nullptr)
+                  throw bad_alloc();
+              pMem = p;
+          }
+          std::copy(v.pMem, v.pMem + sz, pMem);
       }
-
-      std::copy(v.pMem, v.pMem + sz, pMem);
-      return *this;
+      return (*this);
   }
 
   TDynamicVector& operator=(TDynamicVector&& v) noexcept
@@ -270,11 +272,11 @@ public:
   TDynamicVector<T> operator*(const TDynamicVector<T>& v)
   {
       if (size() != v.size()) 
-          throw range_error;
+          throw range_error("range_error");
 
       TDynamicVector<T> res(sz);
-      for (i = 0; i < sz; i++) 
-          for (j = 0; j < sz; j++) 
+      for (size_t i = 0; i < sz; i++) 
+          for (size_t j = 0; j < sz; j++) 
               res[i] += pMem[i][j] * v[j];
 
       return res;
