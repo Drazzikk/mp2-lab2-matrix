@@ -276,8 +276,7 @@ public:
 
       TDynamicVector<T> res(sz);
       for (size_t i = 0; i < sz; i++) 
-          for (size_t j = 0; j < sz; j++) 
-              res[i] += pMem[i][j] * v[j];
+            res[i] = pMem[i] * v;
 
       return res;
 

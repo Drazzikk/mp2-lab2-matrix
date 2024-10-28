@@ -36,7 +36,8 @@ TEST(TDynamicVector, copied_vector_is_equal_to_source_one)
 
 TEST(TDynamicVector, copied_vector_has_its_own_memory)
 {
-	TDynamicVector<int> v1(4), v2(4);
+	TDynamicVector<int> v1(4);
+	TDynamicVector<int> v2(v1);
 	TDynamicVector<int>* p1 = &v1;
 	TDynamicVector<int>* p2 = &v2;
 	EXPECT_NE(p1, p2);
