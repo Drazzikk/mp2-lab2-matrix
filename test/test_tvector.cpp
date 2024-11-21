@@ -42,15 +42,18 @@ public:
 	void TearDown()
 	{
 		delete vector;
-		delete vector_0;
 		delete vector_1;
 		delete vector_2;
-		delete vector_3; 
+		delete vector_3;
 		delete vector_4;
 		delete[] arr_1;
+		arr_1 = nullptr;
 		delete[] arr_2;
+		arr_2 = nullptr;
 		delete[] arr_3;
+		arr_3 = nullptr;
 		delete[] arr_4;
+		arr_4 = nullptr;
 	}
 
 	void CreateDinamicVector(std::size_t size = 5)
